@@ -1,7 +1,5 @@
 services:
-  - name: storm-scope
+  - type: static
+    name: storm-scope
     buildCommand: npm run build
-    startCommand: npm run start
-    envVars:
-      - key: NODE_ENV
-        value: production
+    publishDir: dist
