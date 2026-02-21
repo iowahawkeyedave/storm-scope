@@ -10,6 +10,7 @@ const METRIC_ORDER: MetricKey[] = ['cape', 'cin', 'shear0to1', 'shear0to6', 'lcl
 export function MetricForm() {
   const [values, setValues] = useState<Partial<MetricInputData>>({})
   const [result, setResult] = useState<AnalysisResultData | null>(null)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
 
   const updateMetric = (metric: MetricKey, value: number | undefined) => {
     setValues((prev) => {
@@ -25,13 +26,18 @@ export function MetricForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const nextResult = analyzeSetup(values)
-    setResult(nextResult)
+    setIsAnalyzing(true)
+    try {
+      const nextResult = analyzeSetup(values)
+      setResult(nextResult)
+    } finally {
+      setIsAnalyzing(false)
+    }
   }
 
   return (
-    <section className="space-y-5">
-      <form onSubmit={handleSubmit} className="rounded-lg border border-slate-200 bg-white p-5">
+    <section className="space-y-5" aria-live="polite">
+      <form onSubmit={handleSubmit} className="rounded-lg border border-slate-200 bg-white p-5" aria-label="Storm setup metric form">
         <h2 className="text-xl font-semibold text-slate-900">Storm Setup Analyzer</h2>
         <p className="mt-1 text-sm text-slate-600">Enter one or more environmental metrics, then run analysis.</p>
 
@@ -55,9 +61,11 @@ export function MetricForm() {
 
         <button
           type="submit"
-          className="mt-4 inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+          disabled={isAnalyzing}
+          aria-busy={isAnalyzing ? 'true' : 'false'}
+          className="mt-4 inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500"
         >
-          Analyze Setup
+          {isAnalyzing ? 'Analyzing...' : 'Analyze Setup'}
         </button>
       </form>
 

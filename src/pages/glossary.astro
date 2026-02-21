@@ -2,9 +2,13 @@
 import Layout from '../components/shared/Layout.astro'
 import { GlossarySearch } from '../components/glossary/GlossarySearch'
 import { GLOSSARY_TERMS } from '../data/glossary'
+import { ErrorBoundary } from '../components/shared/ErrorBoundary'
 ---
 
-<Layout title="Storm Scope | Glossary">
+<Layout
+  title="Storm Scope | Glossary"
+  description="Browse and search severe weather terms, index definitions, and threshold guidance used by Storm Scope."
+>
   <section class="space-y-2">
     <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Severe Weather Glossary</h1>
     <p class="max-w-2xl text-sm text-slate-700 md:text-base">
@@ -13,6 +17,8 @@ import { GLOSSARY_TERMS } from '../data/glossary'
   </section>
 
   <div class="mt-6">
-    <GlossarySearch terms={GLOSSARY_TERMS} client:load />
+    <ErrorBoundary client:load fallbackTitle="Glossary search is temporarily unavailable.">
+      <GlossarySearch terms={GLOSSARY_TERMS} />
+    </ErrorBoundary>
   </div>
 </Layout>

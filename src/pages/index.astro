@@ -1,9 +1,13 @@
 ---
 import Layout from '../components/shared/Layout.astro'
 import { MetricForm } from '../components/analyzer/MetricForm'
+import { ErrorBoundary } from '../components/shared/ErrorBoundary'
 ---
 
-<Layout title="Storm Scope | Analyzer">
+<Layout
+  title="Storm Scope | Analyzer"
+  description="Use Storm Scope to input atmospheric metrics and estimate tornado, hail, and wind potential from severe weather setups."
+>
   <section class="space-y-2">
     <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Severe Weather Setup Analyzer</h1>
     <p class="max-w-2xl text-sm text-slate-700 md:text-base">
@@ -12,6 +16,8 @@ import { MetricForm } from '../components/analyzer/MetricForm'
   </section>
 
   <div class="mt-6">
-    <MetricForm client:load />
+    <ErrorBoundary client:load fallbackTitle="Analyzer temporarily unavailable.">
+      <MetricForm />
+    </ErrorBoundary>
   </div>
 </Layout>

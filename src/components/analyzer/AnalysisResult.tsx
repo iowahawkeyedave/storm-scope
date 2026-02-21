@@ -37,14 +37,14 @@ function HazardPanel({ title, hazard }: { title: string; hazard: HazardResult })
 export function AnalysisResult({ result }: Props) {
   if (!result) {
     return (
-      <section className="rounded-lg border border-slate-200 bg-white p-5 text-sm text-slate-600">
+      <section className="rounded-lg border border-slate-200 bg-white p-5 text-sm text-slate-600" aria-live="polite">
         Submit metrics to view tornado, hail, and wind analysis.
       </section>
     )
   }
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-4" aria-live="polite" aria-label="Analysis results">
       <VerdictCard severity={result.overall} summary={result.summary} />
       <div className="grid gap-3 md:grid-cols-3">
         <HazardPanel title="Tornado" hazard={result.tornado} />

@@ -32,14 +32,16 @@ export function GlossarySearch({ terms }: Props) {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search by term or definition..."
+        aria-label="Search glossary terms"
+        aria-controls="glossary-results"
         className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-500 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
       />
 
-      <p className="text-sm text-slate-700">
+      <p className="text-sm text-slate-700" role="status" aria-live="polite">
         Showing {filteredTerms.length} of {terms.length} terms
       </p>
 
-      <div className="grid gap-3">
+      <div id="glossary-results" className="grid gap-3" aria-live="polite">
         {filteredTerms.map((term) => (
           <article key={term.id} className="rounded-lg border border-slate-200 bg-white p-4">
             <h2 className="text-lg font-semibold text-slate-900">{term.term}</h2>

@@ -5,9 +5,20 @@ import Footer from './Footer.astro'
 
 interface Props {
   title?: string
+  description?: string
+  ogImage?: string
+  ogType?: 'website' | 'article'
 }
 
-const { title = 'Storm Scope | Severe Weather Analyzer' } = Astro.props
+const {
+  title = 'Storm Scope | Severe Weather Analyzer',
+  description = 'Analyze severe weather setups with key atmospheric metrics to estimate tornado, hail, and damaging wind potential.',
+  ogImage = '/favicon.svg',
+  ogType = 'website',
+} = Astro.props
+
+const canonicalUrl = Astro.url.href
+const ogImageUrl = new URL(ogImage, Astro.url).href
 ---
 
 <!doctype html>
@@ -18,6 +29,17 @@ const { title = 'Storm Scope | Severe Weather Analyzer' } = Astro.props
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">

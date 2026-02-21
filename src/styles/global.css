@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@layer base {
+  input:focus-visible,
+  button:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-sky-500 ring-offset-2 ring-offset-slate-50;
+  }
+}
