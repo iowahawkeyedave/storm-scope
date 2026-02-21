@@ -1,0 +1,18 @@
+---
+import Layout from '../components/shared/Layout.astro'
+import { GlossarySearch } from '../components/glossary/GlossarySearch'
+import { GLOSSARY_TERMS } from '../data/glossary'
+---
+
+<Layout title="Storm Scope | Glossary">
+  <section class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Severe Weather Glossary</h1>
+    <p class="max-w-2xl text-sm text-slate-700 md:text-base">
+      Search and review common severe weather terms, indices, and threshold guidance used in Storm Scope.
+    </p>
+  </section>
+
+  <div class="mt-6">
+    <GlossarySearch terms={GLOSSARY_TERMS} client:load />
+  </div>
+</Layout>
