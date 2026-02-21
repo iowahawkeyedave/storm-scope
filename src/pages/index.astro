@@ -1,17 +1,17 @@
 ---
-
+import Layout from '../components/shared/Layout.astro'
+import { MetricForm } from '../components/analyzer/MetricForm'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Storm Scope | Analyzer">
+  <section class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">Severe Weather Setup Analyzer</h1>
+    <p class="max-w-2xl text-sm text-slate-700 md:text-base">
+      Provide atmospheric metrics to estimate tornado, hail, and wind potential from this setup.
+    </p>
+  </section>
+
+  <div class="mt-6">
+    <MetricForm client:load />
+  </div>
+</Layout>
