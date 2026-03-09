@@ -6,7 +6,7 @@
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **State:** React useState / Zustand for complex state
-- **Deployment:** Vercel (static output)
+- **Deployment:** Render (static site)
 
 ## Project Structure
 

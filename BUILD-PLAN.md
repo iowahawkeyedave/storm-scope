@@ -42,7 +42,7 @@
 ## Phase 6: Deploy (15 min)
 
 - [ ] Build for production: `npm run build`
-- [ ] Deploy to Vercel (or static hosting)
+- [ ] Deploy to Render
 - [ ] Test production build locally first
 - [ ] Verify all pages load correctly
 

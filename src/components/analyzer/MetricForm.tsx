@@ -5,7 +5,27 @@ import type { AnalysisResult as AnalysisResultData, MetricInput as MetricInputDa
 import { AnalysisResult } from './AnalysisResult'
 import { MetricInput } from './MetricInput'
 
-const METRIC_ORDER: MetricKey[] = ['cape', 'cin', 'shear0to1', 'shear0to6', 'lclHeight', 'stp', 'scp']
+const METRIC_ORDER: MetricKey[] = [
+  'cape',
+  'mlcape',
+  'mucape',
+  'cin',
+  'shear0to1',
+  'srh0to1',
+  'srh0to3',
+  'shear0to6',
+  'effectiveShear',
+  'lclHeight',
+  'lapseRate700to500',
+  'lapseRateSfcTo3km',
+  'freezingLevel',
+  'dcape',
+  'wind850to500',
+  'ehi',
+  'stp',
+  'stpFixed',
+  'scp',
+]
 
 export function MetricForm() {
   const [values, setValues] = useState<Partial<MetricInputData>>({})

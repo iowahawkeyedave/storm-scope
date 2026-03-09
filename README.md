@@ -38,11 +38,23 @@ Deployed to [Render](https://render.com) as a static site. See `render.yaml` for
 ## Metrics Supported
 
 - CAPE (Convective Available Potential Energy)
+- MLCAPE (Mixed-Layer CAPE)
+- MUCAPE (Most-Unstable CAPE)
 - CIN (Convective Inhibition)
 - 0-1km Shear
+- 0-1km SRH
+- 0-3km SRH
 - 0-6km Shear
+- Effective Bulk Shear
 - LCL Height
-- STP (Significant Tornado Parameter)
+- 700-500 mb Lapse Rate
+- Sfc-3 km Lapse Rate
+- Freezing Level
+- DCAPE (Downdraft CAPE)
+- 850-500 mb Wind
+- EHI (Energy-Helicity Index)
+- Effective STP
+- Fixed-Layer STP
 - SCP (Supercell Composite Parameter)
 
 ## License

@@ -13,6 +13,28 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     relatedMetrics: ['cape'],
   },
   {
+    id: 'mlcape',
+    term: 'MLCAPE',
+    definition: 'Mixed-layer CAPE based on a representative low-level parcel, often more useful than surface CAPE for hail and storm mode analysis.',
+    thresholds: {
+      low: '< 500 J/kg',
+      moderate: '500-3000 J/kg',
+      high: '> 3000 J/kg',
+    },
+    relatedMetrics: ['mlcape'],
+  },
+  {
+    id: 'mucape',
+    term: 'MUCAPE',
+    definition: 'Most-unstable CAPE derived from the most buoyant parcel in the profile, useful when elevated instability is present.',
+    thresholds: {
+      low: '< 750 J/kg',
+      moderate: '750-3500 J/kg',
+      high: '> 3500 J/kg',
+    },
+    relatedMetrics: ['mucape'],
+  },
+  {
     id: 'cin',
     term: 'CIN',
     definition: 'Convective Inhibition; energy that suppresses parcels from rising freely and can delay storm initiation.',
@@ -58,14 +80,25 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   },
   {
     id: 'stp',
-    term: 'STP',
-    definition: 'Significant Tornado Parameter; combined index for environments supportive of significant tornadoes.',
+    term: 'Effective STP',
+    definition: 'Effective-layer Significant Tornado Parameter; combined index for environments supportive of significant tornadoes.',
     thresholds: {
       low: '< 1',
       moderate: '1-3',
       high: '> 3',
     },
     relatedMetrics: ['stp'],
+  },
+  {
+    id: 'stp-fixed',
+    term: 'Fixed-Layer STP',
+    definition: 'Fixed-layer Significant Tornado Parameter; similar to STP but computed from a fixed parcel/layer assumption.',
+    thresholds: {
+      low: '< 1',
+      moderate: '1-3',
+      high: '> 3',
+    },
+    relatedMetrics: ['stpFixed'],
   },
   {
     id: 'scp',
@@ -102,16 +135,28 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     id: 'srh',
     term: 'Storm-Relative Helicity',
     definition: 'Measure of streamwise vorticity available to a storm; higher values support rotating updrafts.',
+    thresholds: {
+      low: '< 100 m²/s²',
+      moderate: '100-300 m²/s²',
+      high: '> 300 m²/s²',
+    },
+    relatedMetrics: ['srh0to1', 'srh0to3'],
+  },
+  {
+    id: 'ehi',
+    term: 'EHI',
+    definition: 'Energy-Helicity Index; composite of buoyancy and helicity often used for tornado-supportive environments.',
+    thresholds: {
+      low: '< 1',
+      moderate: '1-4',
+      high: '> 4',
+    },
+    relatedMetrics: ['ehi'],
   },
   {
     id: 'hodograph',
     term: 'Hodograph',
     definition: 'Graph of wind vectors with height used to diagnose shear magnitude, curvature, and storm mode.',
-  },
-  {
-    id: 'mlcape',
-    term: 'MLCAPE',
-    definition: 'Mixed-layer CAPE based on a representative low-level parcel, often more realistic than surface CAPE.',
   },
   {
     id: 'mucin',
@@ -122,11 +167,51 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     id: 'bulk-shear',
     term: 'Bulk Shear',
     definition: 'Vector wind difference through a layer, commonly used for supercell and organization diagnosis.',
+    relatedMetrics: ['shear0to1', 'shear0to6', 'effectiveShear'],
+  },
+  {
+    id: 'effective-bulk-shear',
+    term: 'Effective Bulk Shear',
+    definition: 'Bulk shear measured through the effective inflow layer, often more representative of the storm-feeding layer than fixed-depth shear.',
+    thresholds: {
+      low: '< 25 kt',
+      moderate: '25-55 kt',
+      high: '> 55 kt',
+    },
+    relatedMetrics: ['effectiveShear'],
+  },
+  {
+    id: 'freezing-level',
+    term: 'Freezing Level',
+    definition: 'Approximate height of the 0°C isotherm; lower freezing levels generally favor large hail reaching the ground.',
+    thresholds: {
+      low: '< 2000 m',
+      moderate: '2000-3800 m',
+      high: '> 3800 m',
+    },
+    relatedMetrics: ['freezingLevel'],
   },
   {
     id: 'lapse-rate',
     term: 'Lapse Rate',
     definition: 'Temperature decrease with height; steeper lapse rates can support stronger instability and hail.',
+    thresholds: {
+      low: '< 6.0 °C/km',
+      moderate: '6.0-8.0 °C/km',
+      high: '> 8.0 °C/km',
+    },
+    relatedMetrics: ['lapseRate700to500'],
+  },
+  {
+    id: 'sfc-3km-lapse-rate',
+    term: 'Sfc-3 km Lapse Rate',
+    definition: 'Low-level lapse rate through the boundary layer; steeper values favor stronger downdrafts and damaging wind potential.',
+    thresholds: {
+      low: '< 6.0 °C/km',
+      moderate: '6.0-8.5 °C/km',
+      high: '> 8.5 °C/km',
+    },
+    relatedMetrics: ['lapseRateSfcTo3km'],
   },
   {
     id: 'effective-inflow-layer',
@@ -137,6 +222,23 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     id: 'dcape',
     term: 'DCAPE',
     definition: 'Downdraft CAPE; proxy for potential intensity of downbursts and damaging wind events.',
+    thresholds: {
+      low: '< 500 J/kg',
+      moderate: '500-1500 J/kg',
+      high: '> 1500 J/kg',
+    },
+    relatedMetrics: ['dcape'],
+  },
+  {
+    id: '850-500-wind',
+    term: '850-500 mb Wind',
+    definition: 'Layer-mean wind between 850 and 500 mb; stronger flow increases the momentum available for severe surface gusts.',
+    thresholds: {
+      low: '< 20 kt',
+      moderate: '20-50 kt',
+      high: '> 50 kt',
+    },
+    relatedMetrics: ['wind850to500'],
   },
   {
     id: 'outflow-boundary',
